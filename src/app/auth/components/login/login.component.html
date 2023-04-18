@@ -1,0 +1,62 @@
+<!-- Container -->
+<div class="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
+
+  <!-- Login component -->
+  <div class="flex shadow-md">
+    <!-- Login form -->
+    <div class="flex flex-wrap content-center justify-center rounded-l-md bg-white"
+         style="width: 24rem; height: 32rem;">
+      <div class="w-72">
+        <!-- Heading -->
+        <h1 class="text-xl font-semibold text-blue-900">¡Bienvenido a GEDI!</h1>
+        <p class="text-gray-400 text-xs">Gestión y Elaboración de Documentos Institucionales</p>
+
+        <!-- Form -->
+        <form [formGroup]="formLogin" (ngSubmit)="login()" class="flex flex-col gap-2">
+          <mat-form-field class="w-full">
+            <mat-label>Correo Electrónico</mat-label>
+            <input type="email" matInput formControlName="email"
+                   placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="f['email'].touched && f['email'].errors?.['required']">
+              Correo Electrónico es <strong>obligatorio</strong>
+            </mat-error>
+            <mat-error *ngIf="f['email'].touched && f['email'].errors?.['email']">
+              Correo Electrónico es <strong>inválido</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+            </button>
+            <mat-error *ngIf="f['password'].touched && f['password'].errors?.['required']">
+              Contraseña es <strong>obligatoria</strong>
+            </mat-error>
+            <mat-error *ngIf="f['password'].touched && f['password'].errors?.['minlength']">
+              Contraseña <strong>my corta</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <div class="mb-3 flex justify-end">
+            <a href="#" class="text-xs font-semibold text-blue-700">¿Olvidó su contraseña?</a>
+          </div>
+
+          <div class="mb-3">
+            <button type="submit" mat-raised-button
+                    class="w-full text-center px-2 py-1.5 rounded-md bg-blue-900 text-white">Ingresar
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Login banner -->
+    <div class="flex flex-wrap content-center justify-center rounded-r-md" style="width: 24rem; height: 32rem;">
+      <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md" src="../../../../assets/img/banner.jpg">
+    </div>
+
+  </div>
+
+</div>

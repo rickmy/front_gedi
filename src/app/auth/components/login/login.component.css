@@ -1,0 +1,5 @@
+.bg {
+  background: url('../../../../assets/img/letter.jpg') no-repeat center;
+  background-size: cover;
+  height: 100vh;
+}
