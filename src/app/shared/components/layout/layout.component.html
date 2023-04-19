@@ -16,6 +16,87 @@
       <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a>
     </mat-nav-list>
+
+    <div class="menu1">
+      <button matTooltip="{{user.name}}" class="button2" mat-icon-button mat-raised-button [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button disabled mat-menu-item>
+          <mat-icon>account_box</mat-icon>
+          <span>{{user.name || user.username}}</span>
+        </button>
+        <!--       <button (click)="loader" *ngIf="admin" routerLink="gestion-usuarios" mat-menu-item>
+        <div class="progress-loader" [hidden]="!loading">
+
+          <mat-progress-bar [mode]="'indeterminate'">
+          </mat-progress-bar>
+
+      </div>
+        <mat-icon>build</mat-icon>
+        <span>Administrador</span>
+        </button> -->
+        <button matTooltip="Genera un documento" matTooltipPosition="above" [matMenuTriggerFor]="formatos"
+                mat-menu-item>
+          <mat-icon>library_books</mat-icon>
+          <span>Crear Documento</span>
+        </button>
+        <mat-menu #formatos="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="solicitud">Solicitud</button>
+          <button mat-menu-item [matMenuTriggerFor]="acta">Acta</button>
+          <button mat-menu-item [matMenuTriggerFor]="memorandum">Memorándum</button>
+          <button mat-menu-item [matMenuTriggerFor]="hojaDeVida">Hoja de Vida</button>
+          <button mat-menu-item [matMenuTriggerFor]="Oficio">Oficio</button>
+        </mat-menu>
+        <mat-menu #solicitud="matMenu">
+          <button mat-menu-item disabled>Solicitud Básica</button>
+          <button mat-menu-item disabled>Solicitud - Cambio de Jornada</button>
+          <button mat-menu-item disabled>Solicitud - Cambio de Carrera</button>
+          <button mat-menu-item routerLink="/solicitudes-titulacion">Solicitud - Proyecto de Titulación</button>
+        </mat-menu>
+
+        <mat-menu #acta="matMenu">
+          <button mat-menu-item routerLink="/actas">Acta Básica</button>
+          <button mat-menu-item routerLink="/actasReuniones">Acta de Reunión</button>
+        </mat-menu>
+
+        <mat-menu #memorandum="matMenu">
+          <button mat-menu-item routerLink="/memorandums">Memorándum Básico</button>
+        </mat-menu>
+
+        <mat-menu #hojaDeVida="matMenu">
+          <button mat-menu-item routerLink="/hojasDeVida">Hoja de Vida Básica</button>
+          <button mat-menu-item disabled>Hoja de Vida - Fase Práctica</button>
+        </mat-menu>
+
+        <mat-menu #Oficio="matMenu">
+          <button mat-menu-item routerLink="/oficios">Oficio Básico</button>
+          <button mat-menu-item disabled>Oficio - Carrera Específica</button>
+        </mat-menu>
+
+
+        <button matTooltip="Visualizador de documentos" matTooltipPosition="above" routerLink="visualizador"
+                mat-menu-item>
+          <mat-icon>remove_red_eye</mat-icon>
+          <span>Visualizador</span>
+        </button>
+        <button matTooltip="Información sobre tus documentos" matTooltipPosition="above" routerLink="elaborador"
+                mat-menu-item>
+          <mat-icon>info</mat-icon>
+          <span>Elaborador</span>
+        </button>
+        <button matTooltip="Visita la página de la Institución" matTooltipPosition="above" mat-menu-item>
+          <mat-icon>apartment</mat-icon>
+          <a href="http://yavirac.edu.ec/eva/login/index.php">IGNUG</a>
+        </button>
+        <button matTooltip="¿Cerrar Sesión en GEDI?" matTooltipPosition="above" mat-menu-item>
+          <mat-icon>cancel</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>
+    </div>
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar class="bg-blue-900 text-white">

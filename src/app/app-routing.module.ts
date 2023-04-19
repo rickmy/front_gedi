@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from "@shared/components/layout/layout.component";
 
 const routes: Routes = [
@@ -12,9 +12,14 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
+        path: 'dashboard',
         loadChildren: () => import('@pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      }
     ]
   }
 ];
