@@ -1,17 +1,21 @@
+import {DocumentModel} from "@core/models/documents/document-model";
+
 export interface UserModel {
   id: number;
-  username: string;
   userCode: string;
-  role: Role;
-  email: string;
-  state: boolean;
-  career?: any;
+  username: string;
   name?: any;
   lastName?: any;
+  email: string;
   emailVerifiedAt?: any;
+  state: boolean;
+  roleId: number;
+  careerId?: number;
+  role: Role;
+  career?: any;
+  Documents: DocumentModel[]
 }
-
 export interface Role {
-  name: string;
   id: number;
+  name: string;
 }

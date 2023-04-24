@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, NgZone} from '@angular/core';
+import {akitaDevtools, persistState} from "@datorama/akita";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'front_gedi';
+  constructor(private ngZone: NgZone) {
+    akitaDevtools(ngZone);
+    persistState();
+  }
 }

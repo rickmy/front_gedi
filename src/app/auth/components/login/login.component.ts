@@ -5,10 +5,9 @@ import {AuthService} from "../../service/auth.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   hide = false;
   formLogin!: FormGroup;
 
@@ -32,10 +31,6 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.formLogin.value);
     this.authService.postLogin(this.formLogin.value)
-      .subscribe({
-        next:(res)=>{
-          console.log(res)
-        }
-      })
+      .subscribe()
   }
 }

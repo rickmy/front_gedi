@@ -5,7 +5,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 @Component({
   selector: 'app-dashboard-view',
   templateUrl: './dashboard-view.component.html',
-  styleUrls: ['./dashboard-view.component.css']
+  styleUrls: ['./dashboard-view.component.scss']
 })
 export class DashboardViewComponent {
   /** Based on the screen size, switch from standard to one column per row */

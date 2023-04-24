@@ -5,7 +5,11 @@
   "projects": {
     "front_gedi": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,7 +28,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.css",
+              "src/styles.scss",
               "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
@@ -93,7 +97,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.css",
+              "src/styles.scss",
               "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
