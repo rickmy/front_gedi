@@ -18,11 +18,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import {SharedModule} from "@shared/shared.module";
 import {NgxUiLoaderModule} from "ngx-ui-loader";
+import {SessionInterceptor} from "@core/interceptors/session.interceptor";
+import {ErrorInterceptor} from "@core/interceptors/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -58,9 +60,49 @@ import {NgxUiLoaderModule} from "ngx-ui-loader";
       positionClass: 'toast-top-right',
     }),
     SweetAlert2Module.forRoot(),
-    NgxUiLoaderModule
+    NgxUiLoaderModule.forRoot({
+      "bgsColor": "red",
+      "bgsOpacity": 0.5,
+      "bgsPosition": "bottom-right",
+      "bgsSize": 60,
+      "bgsType": "ball-spin-clockwise",
+      "blur": 7,
+      "delay": 0,
+      "fastFadeOut": true,
+      "fgsColor": "#7f7f88",
+      "fgsPosition": "center-center",
+      "fgsSize": 100,
+      "fgsType": "three-strings",
+      "gap": 24,
+      "logoPosition": "center-center",
+      "logoSize": 120,
+      "logoUrl": "",
+      "masterLoaderId": "master",
+      "overlayBorderRadius": "0",
+      "overlayColor": "rgba(40,40,40,0.77)",
+      "pbColor": "#6b6b76",
+      "pbDirection": "ltr",
+      "pbThickness": 3,
+      "hasProgressBar": true,
+      "text": "",
+      "textColor": "#FFFFFF",
+      "textPosition": "center-center",
+      "maxTime": -1,
+      "minTime": 300
+    })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -9,11 +9,11 @@
     <span class="text-center text-gray-400 p-2 font-extralight">Menu</span>
 
     <mat-nav-list >
-      <a mat-list-item href="#" [routerLink]="['/dashboard']" [routerLinkActive]="['text-blue-700']">
+      <a mat-list-item href="#" [routerLink]="[pathService.dashboardPath]" [routerLinkActive]="['text-blue-700']">
         <mat-icon matListIcon [routerLinkActive]="['text-blue-700']">home</mat-icon>
         <span matLine [routerLinkActive]="['text-blue-700']">Inicio</span>
       </a>
-      <a mat-list-item href="#" [routerLink]="['/documents']" [routerLinkActive]="['text-blue-700']">
+      <a mat-list-item href="#" [routerLink]="[pathService.viewerPath]" [routerLinkActive]="['text-blue-700']">
         <mat-icon matListIcon>remove_red_eye</mat-icon>
         <span matLine>Visualizador</span>
       </a>
@@ -23,32 +23,14 @@
           <span matLine>Documentos</span>
           </button>
         <mat-menu #documentsType="matMenu">
-          <button mat-menu-item [matMenuTriggerFor]="solicitud">Solicitud</button>
-          <button mat-menu-item [matMenuTriggerFor]="acta">Acta</button>
-          <button mat-menu-item [matMenuTriggerFor]="memorandum">Memorándum</button>
-          <button mat-menu-item [matMenuTriggerFor]="hojaDeVida">Hoja de Vida</button>
-          <button mat-menu-item [matMenuTriggerFor]="Oficio">Oficio</button>
+          <ng-container *ngFor="let doc of typeDocuments">
+            <button mat-menu-item [matMenuTriggerFor]="subTypeDocument" (mouseenter)="selectedItem(doc)">{{ doc.name }}</button>
+          </ng-container>
         </mat-menu>
-        <mat-menu #solicitud="matMenu">
-          <button mat-menu-item disabled>Solicitud Básica</button>
-          <button mat-menu-item disabled>Solicitud - Cambio de Jornada</button>
-          <button mat-menu-item disabled>Solicitud - Cambio de Carrera</button>
-          <button mat-menu-item routerLink="/solicitudes-titulacion">Solicitud - Proyecto de Titulación</button>
-        </mat-menu>
-        <mat-menu #acta="matMenu">
-          <button mat-menu-item routerLink="/actas">Acta Básica</button>
-          <button mat-menu-item routerLink="/actasReuniones">Acta de Reunión</button>
-        </mat-menu>
-        <mat-menu #memorandum="matMenu">
-          <button mat-menu-item routerLink="/memorandums">Memorándum Básico</button>
-        </mat-menu>
-        <mat-menu #hojaDeVida="matMenu">
-          <button mat-menu-item routerLink="/hojasDeVida">Hoja de Vida Básica</button>
-          <button mat-menu-item disabled>Hoja de Vida - Fase Práctica</button>
-        </mat-menu>
-        <mat-menu #Oficio="matMenu">
-          <button mat-menu-item routerLink="/oficios">Oficio Básico</button>
-          <button mat-menu-item disabled>Oficio - Carrera Específica</button>
+        <mat-menu #subTypeDocument="matMenu">
+          <ng-container *ngFor="let sub of subTypeDocuments">
+            <button mat-menu-item>{{ sub.name }}</button>
+          </ng-container>
         </mat-menu>
       </div>
       <button mat-list-item [routerLink]="['/documents']" [routerLinkActive]="['text-blue-700']">
@@ -72,13 +54,15 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Inicio</span>
+      <span>{{title}}</span>
       <div class="flex w-full justify-end items-center px-4 py-6">
         <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
           <svg class="absolute w-12 h-12 text-white -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
         </div>
       </div>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="container p-4">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

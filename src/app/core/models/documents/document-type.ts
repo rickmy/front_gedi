@@ -1,13 +1,13 @@
 export interface DocumentType {
-  id: number;
-  name: string;
-  acronym: string;
-  children: Child[];
+  id: number | null;
+  name: string | null;
+  acronym: string | null;
+  subTypeDocument: SubTypeDocument[] | null;
 }
 
-interface Child {
-  id: number;
-  name: string;
-  father: number;
-  acronym: string;
+export interface SubTypeDocument {
+  id: number | null;
+  name: string | null;
+  father: number | null;
+  acronym: string | null;
 }

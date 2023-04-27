@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 export class PathService {
   readonly dashboardPath = '/dashboard';
   readonly authPath = '/auth';
+  readonly viewerPath = '/viewer';
 
   readonly loginPath = this.authPath + '/login';
 

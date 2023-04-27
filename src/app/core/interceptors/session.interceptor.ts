@@ -9,13 +9,16 @@ import {catchError, finalize, Observable, throwError} from 'rxjs';
 import {SessionQuery} from "@app/auth/store/session.query";
 import {map} from "rxjs/operators";
 import {SessionService} from "@app/auth/store/session.service";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Injectable()
 export class SessionInterceptor implements HttpInterceptor {
+  private activeRequests = 0;
 
   constructor(
     protected _sessionQuery: SessionQuery,
     private _sessionService: SessionService,
+    private _loaderService: NgxUiLoaderService,
   ) {
   }
 
@@ -30,23 +33,22 @@ export class SessionInterceptor implements HttpInterceptor {
       });
     }
 
+    if (this.activeRequests === 0) this._loaderService.start();
+    this.activeRequests++;
+
     return next.handle(req)
       .pipe(
         map((event: HttpEvent<any>) => {
           return event;
         }),
-        catchError((error: HttpErrorResponse) => {
-          if (error.status === 401) {
-            this._sessionService.logout();
-          }
-          if (error.status === 500) {
-            return throwError(() => Error('Error en el servidor'));
-          }
-          return throwError(() => Error(error.error.message));
-        }),
         finalize(() => {
-          //this.blockUiService.hide();
+          this.stopLoading();
         })
       )
+  }
+
+  private stopLoading(): void {
+    this.activeRequests--;
+    if (this.activeRequests === 0) this._loaderService.stop();
   }
 }
