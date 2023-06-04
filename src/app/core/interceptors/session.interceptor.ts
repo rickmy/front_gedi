@@ -3,9 +3,9 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpErrorResponse
+  HttpInterceptor,
 } from '@angular/common/http';
-import {catchError, finalize, Observable, throwError} from 'rxjs';
+import {finalize, Observable} from 'rxjs';
 import {SessionQuery} from "@app/auth/store/session.query";
 import {map} from "rxjs/operators";
 import {SessionService} from "@app/auth/store/session.service";

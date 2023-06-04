@@ -2,30 +2,13 @@
 <div class="flex flex-col gap-3">
   <form [formGroup]="formSearch" (ngSubmit)="search()" class="flex gap-2 bg-white border-2 rounded shadow p-4 w-full">
     <div class="w-1/4">
-      <mat-form-field class="w-full">
-        <mat-label>Filtrar por Tipos de Documento </mat-label>
-        <mat-select formControlName="typeDocument" >
-          <mat-option *ngFor="let doc of typeDocuments" [value]="doc.id" (onSelectionChange)="loadSubTypeDocuments(doc)">
-            {{doc.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      Filtrar por Tipos de Documento
     </div>
     <div class="w-1/4">
-      <mat-form-field class="w-full">
-        <mat-label>Filtrar por Tipos de Subdocumento</mat-label>
-        <mat-select formControlName="subTypeDocument">
-          <mat-option *ngFor="let team of subTypeDocuments" [value]="team.id" >
-            {{team.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      Filtrar por Tipos de Subdocumento
     </div>
     <div class="w-1/4">
-      <mat-form-field class="w-full">
-        <mat-label>Código del documento</mat-label>
-        <input type="text" matInput formControlName="codeDocument">
-      </mat-form-field>
+      Código del documento
     </div>
     <div class="w-1/4 flex align-middle items-center justify-center">
       <button type="submit" mat-raised-button color="primary" class="w-1/2">Buscar</button>

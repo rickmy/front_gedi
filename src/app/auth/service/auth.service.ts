@@ -4,11 +4,11 @@ import {tap} from "rxjs/operators";
 import {UrlAuth} from "../helpers/urlAuth";
 import {Observable} from "rxjs";
 import {ResponseAuth} from "../models/response-auth";
-import {ToastrService} from "ngx-toastr";
 import {PathService} from "@core/services/path.service";
 import {Credentials} from "@app/auth/models/login-form";
 import {SessionService} from "@app/auth/store/session.service";
 import {UserService} from "@core/store/user.service";
+import {ToastrService} from "@shared/services/toastr.service";
 
 @Injectable({
   providedIn: 'root'

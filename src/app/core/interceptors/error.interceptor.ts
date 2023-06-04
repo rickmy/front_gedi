@@ -6,8 +6,8 @@ import {
   HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
 import {catchError, Observable, throwError} from 'rxjs';
-import {ToastrService} from "ngx-toastr";
 import {AuthService} from "@app/auth/service/auth.service";
+import {ToastrService} from "@shared/services/toastr.service";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
